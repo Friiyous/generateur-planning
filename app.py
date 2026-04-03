@@ -153,7 +153,7 @@ def exporter_word(plannings_data, service_label, mois, annee, centre_sante=""):
         # Données - TOUT SANS COULEUR (fond blanc, texte noir)
         for i, emp in enumerate(plannings_data):
             row = table.rows[i + 1].cells
-            row[0].text = f"{emp['nom']} {emp['prenom']}"
+            row[0].text = f"{emp['nom']}"
             # Pas de couleur pour Nom
 
             for j, shift in enumerate(emp["planning"]):
@@ -223,7 +223,7 @@ for idx, cat in enumerate(CATEGORIES):
                 sauvegarder_employes(employes_fresh)
                 st.rerun()
 
-        # Liste des employés
+        # Liste des employés (sans le préfixe)
         for emp in employes_cat:
             col_a, col_b = st.columns([3, 1])
             with col_a:
@@ -327,7 +327,7 @@ if st.button("🔄 Générer le Planning", type="primary", use_container_width=T
 
         # Ajouter les lignes d'employés
         for emp in plannings:
-            html += f"<tr><td>{emp['nom']} {emp['prenom']}</td>"
+            html += f"<tr><td>{emp['nom']}</td>"
             for shift in emp["planning"]:
                 html += f'<td><span class="shift-{shift["shift"]}">{shift["shift"]}</span></td>'
             html += '</tr>'
