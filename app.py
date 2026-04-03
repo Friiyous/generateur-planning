@@ -278,7 +278,10 @@ if st.button("🔄 Générer le Planning", type="primary", use_container_width=T
 
         # Recharger les positions depuis le fichier AVANT de générer
         employes_fresh = charger_employes()
-        employes_service = [e for e in employes_fresh if e["service"] == service["id"]]
+        if service is None:
+            employes_service = employes_fresh
+        else:
+            employes_service = [e for e in employes_fresh if e["service"] == service["id"]]
 
         plannings = []
         for emp in employes_service:
